@@ -1,0 +1,14 @@
+#Nombre{
+    margin-right: 20px;
+}
+
+#presentacion{
+    display:flex ;
+    justify-content: center;
+}
+
+#Luchador{
+    width: fit-content;
+    height: fit-content;
+    border: 1px black solid;
+}
