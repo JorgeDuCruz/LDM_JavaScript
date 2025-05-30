@@ -1,0 +1,17 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+.tipo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.tipo label {
+  margin-right: 15px;
+}
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
