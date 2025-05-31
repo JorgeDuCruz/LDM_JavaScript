@@ -34,7 +34,35 @@
       <button id="boton">Generar</button>
    
 
-    <h1 id="pokemon"></h1>
+      <div id="pokemon-card-container">
+        <div id="pokemon-card">
+          <!-- Imagen -->
+          <div id="pokemon-image">
+            <img id="pokemon-sprite" src="" alt="Sprite del Pokémon" style="max-height: 100%; max-width: 100%;">
+          </div>
+      
+          <!-- Nombre -->
+          <h2 id="pokemon-name">Nombre</h2>
+      
+          <!-- Generación -->
+          <div id="pokemon-generation">Generación</div>
+      
+          <!-- Tipos -->
+          <div id="pokemon-types">
+            
+          </div>
+      
+          <!-- Estadísticas -->
+          <div id="pokemon-stats">
+            <div class="stat"><strong>HP:</strong> <span id="stat-hp">0</span></div>
+            <div class="stat"><strong>Ataque:</strong> <span id="stat-attack">0</span></div>
+            <div class="stat"><strong>Defensa:</strong> <span id="stat-defense">0</span></div>
+            <div class="stat"><strong>Ataque especial:</strong> <span id="stat-special-attack">0</span></div>
+            <div class="stat"><strong>Defensa especial:</strong> <span id="stat-special-defense">0</span></div>
+            <div class="stat"><strong>Velocidad:</strong> <span id="stat-speed">0</span></div>
+          </div>
+        </div>
+      </div>
     <script src="recuperacionJSON.js"></script>
 </body>
 </html>
