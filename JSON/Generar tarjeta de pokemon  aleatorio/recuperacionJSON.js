@@ -96,7 +96,7 @@ function escribirPokemon(pokemonRespuesta){
     tiposPokemon.innerHTML='' // vacia los tipos en caso de que haya habido un tipo antes
     buscarTipos(pokemonRespuesta) // Busca los nombres en español de los tipos del pokemon
 
-    buscarGeneracion(pokemonRespuesta) // Busca la generacion en la que se introdujo la especie base del pokemon
+    buscarFormaPokemon(pokemonRespuesta) // Busca la generacion en la que se introdujo la especie base del pokemon
      // Esto hace que si el pokemon es una forma regional, megaEvolucion o similares establecera la generacion del pokemon original
 }
 
@@ -119,20 +119,36 @@ function escrbirTipos(tipo){
     //El .name es la clave del objeto donde esta el nombre
 }
 
-//Funcion para llamar a la API de la especie de un pokemon para hallar su generacion
-function buscarGeneracion(pokemon){
-    fetch(pokemon.species.url).then(confirmarEspecie).catch(respuestaIncorrecta)
+//Funcion para llamar a la API de la forma de un pokemon para hallar su generacion
+function buscarFormaPokemon(pokemon){
+    console.log(pokemon)
+    fetch(pokemon.forms[0].url).then(confirmarForma).catch(respuestaIncorrecta) //forms es siempre un array con la posicion 0 siendo la posicion de la forma que buscamos
 }
 
-//Funcion que confirma los datos de la especie del pokemon proporcionados por la API
-function confirmarEspecie(especie){
-    especie.json().then(escribirGeneracion)
+//Funcion que confirma los datos de la forma del pokemon proporcionados por la API
+function confirmarForma(forma){
+    //console.log(forma.json())
+    forma.json().then(buscarVersion)
 }
 
-//Funcion que escribe en que generacion fue introducida la especie del pokemon
-function escribirGeneracion(especie){
-    let generacion = (especie.generation.name).toUpperCase().split("-")[1] /*Separa la informacion de la API en un Array que contien la palabra generation y
-                                                                            la generacion en la que la especie fue introducida con numeros romanos y en mayusculas
-                                                                            y finalmente elige la parte donde esta la generacion en numeros romanos*/
+//Funcion que busca en que version fue introducida la forma del pokemon
+function buscarVersion(forma){
+    //console.log(forma.version_group.url)
+    fetch(forma.version_group.url).then(confirmarVersion).catch(respuestaIncorrecta)// llamamos a la API para ver en que version se introdujo la forma
+}
+
+//Funcion que confirma los datos de la version proporcionados por la API 
+function confirmarVersion(version){
+    //console.log(version.json())
+    version.json().then(escribirGeneracion)
+    //console.log("Despues de version")
+}
+
+//Funcion que escribe en que generacion fue introducido el pokemon
+function escribirGeneracion(version){
+    //console.log("Antes de version")
+    let generacion = (version.generation.name).toUpperCase().split("-")[1] /*Separa la informacion de la API en un Array que contien: la palabra generation y
+                                                                            la generacion en la que el pokemon fue introducido en numeros romanos y en mayusculas.
+                                                                            Finalmente elige la parte donde está la generacion en numeros romanos*/
     generacionPokemon.innerHTML = "Generación "+generacion //Escribe la generacion en la que fue introducida la especie del pokemon en la tarjeta del pokemon
 }
