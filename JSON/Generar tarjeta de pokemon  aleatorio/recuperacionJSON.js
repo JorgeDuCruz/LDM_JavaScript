@@ -10,6 +10,7 @@ let ataqueEsPokemon = document.querySelector("#stat-special-attack")
 let defensaPokemon = document.querySelector("#stat-defense")
 let defensaEsPokemon = document.querySelector("#stat-special-defense")
 let velocidadPokemon = document.querySelector("#stat-speed")
+let totalPokemon = document.querySelector("#stat-total")
 let tiposPokemon = document.querySelector("#pokemon-types")
 
 //Variables para comprobar los botones de los tipos
@@ -90,6 +91,12 @@ function escribirPokemon(pokemonRespuesta){
     ataqueEsPokemon.innerHTML = stats[3].base_stat //Escribe los puntos base de la estadistica de Ataque especial del pokemon
     defensaEsPokemon.innerHTML = stats[4].base_stat //Escribe los puntos base de la estadistica de Defensa especial del pokemon
     velocidadPokemon.innerHTML = stats[5].base_stat //Escribe los puntos base de la estadistica de Velocidad del pokemon
+
+    let stats_total=0
+    for (let stat of stats){
+        stats_total+=stat.base_stat
+    }
+    totalPokemon.innerHTML=stats_total//Escribe la suma de todos los puntos de las estadisticas base
 
     fotoPokemon.src = pokemonRespuesta.sprites.front_default // Escribe el sprite del pokemon en la tarjeta
     
