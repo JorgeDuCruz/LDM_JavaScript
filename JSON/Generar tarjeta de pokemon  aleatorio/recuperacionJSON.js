@@ -13,6 +13,8 @@ let velocidadPokemon = document.querySelector("#stat-speed")
 let totalPokemon = document.querySelector("#stat-total")
 let tiposPokemon = document.querySelector("#pokemon-types")
 
+let statsPokemon = [vidaPokemon,ataquePokemon,defensaPokemon,ataqueEsPokemon,defensaEsPokemon,velocidadPokemon]//Array con las estadisticas en orden
+
 //Variables para comprobar los botones de los tipos
 let normal = document.querySelector("#normal")
 let bug = document.querySelector("#bug")
@@ -84,17 +86,38 @@ function confirmarPokemon(respuesta){
 function escribirPokemon(pokemonRespuesta){
     //console.log(pokemonRespuesta)
     let stats = pokemonRespuesta.stats // Crea un Array con las estadisticas base del pokemon elegido
-
-    vidaPokemon.innerHTML = stats[0].base_stat //Escribe los puntos base de la estadistica de PS del pokemon
+    
+    /*vidaPokemon.innerHTML = stats[0].base_stat //Escribe los puntos base de la estadistica de PS del pokemon
     ataquePokemon.innerHTML = stats[1].base_stat //Escribe los puntos base de la estadistica de Ataque del pokemon
     defensaPokemon.innerHTML = stats[2].base_stat //Escribe los puntos base de la estadistica de Defensa del pokemon
     ataqueEsPokemon.innerHTML = stats[3].base_stat //Escribe los puntos base de la estadistica de Ataque especial del pokemon
     defensaEsPokemon.innerHTML = stats[4].base_stat //Escribe los puntos base de la estadistica de Defensa especial del pokemon
     velocidadPokemon.innerHTML = stats[5].base_stat //Escribe los puntos base de la estadistica de Velocidad del pokemon
+    */
 
     let stats_total=0
-    for (let stat of stats){
-        stats_total+=stat.base_stat
+    let stat_Base =0
+    for (let i =0;i<6;i++){
+        stat_Base=stats[i].base_stat
+        statsPokemon[i].innerHTML = stat_Base
+        stats_total += stat_Base
+
+        if(stat_Base <45){
+            statsPokemon[i].style= "color:#FA5858"
+        }
+        else if(stat_Base<65){
+            statsPokemon[i].style= "color:#F7D358"
+        }
+        else if(stat_Base<=100){
+            statsPokemon[i].style= "color:#F4FA58"
+        }
+        else if(stat_Base<=120){
+            statsPokemon[i].style= "color:#82FA58"
+        }
+        else{
+            statsPokemon[i].style= "color:#58FAAC"
+        }
+        
     }
     totalPokemon.innerHTML=stats_total//Escribe la suma de todos los puntos de las estadisticas base
 
